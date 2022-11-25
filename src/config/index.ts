@@ -1,4 +1,7 @@
+import dotenv from "dotenv";
 import merge from "lodash.merge";
+
+dotenv.config();
 
 process.env.NODE_ENV = process.env.NODE_ENV || "development";
 const stage = process.env.STAGE || "local";
@@ -16,7 +19,7 @@ if (stage === "production") {
 const config = {
   stage,
   env: process.env.NODE_ENV,
-  port: 3001,
+  port: process.env.PORT,
   secrets: {
     jwt: process.env.JWT_SECRET,
     dbUrl: process.env.DATABASE_URL,
