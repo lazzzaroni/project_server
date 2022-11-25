@@ -1,6 +1,8 @@
-import { connect } from "mongoose";
+import { connect, connection } from "mongoose";
 import config from "./config";
 import app from "./server";
+
+connection.syncIndexes();
 
 connect(config.secrets.dbUrl).then(() => {
   console.log(
