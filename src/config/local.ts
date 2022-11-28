@@ -1,3 +1,4 @@
 export default {
-  port: 3001,
+  // example
+  // port: process.env.PORT || 3000,
 };
