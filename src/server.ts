@@ -3,6 +3,7 @@ import express, { Express, NextFunction, Request, Response } from "express";
 import morgan from "morgan";
 import { createNewUser, loginUser } from "./controllers/auth.controller";
 import router from "./router";
+import { protect } from "./services/auth";
 
 const app: Express = express();
 
@@ -16,7 +17,7 @@ app.get("/", (req: Request, res: Response, next: NextFunction) => {
   next();
 });
 
-app.use("/api", router);
+app.use("/api", protect, router);
 
 app.post("/signup", createNewUser);
 app.post("/signin", loginUser);
