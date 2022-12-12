@@ -20,6 +20,7 @@ const config = {
   stage,
   env: process.env.NODE_ENV,
   port: process.env.PORT,
+  dbTest: process.env.DB_TEST,
   secrets: {
     jwt: process.env.JWT_SECRET,
     dbUrl: process.env.DATABASE_URL,
