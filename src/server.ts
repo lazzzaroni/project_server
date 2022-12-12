@@ -1,8 +1,8 @@
 import cors from "cors";
 import express, { Express, NextFunction, Request, Response } from "express";
 import morgan from "morgan";
-import config from "./config";
 import { createNewUser, loginUser } from "./controllers/auth.controller";
+import ErrorHandler from "./middleware/ErrorHandler";
 import router from "./router";
 import { protect } from "./services/auth";
 
@@ -23,16 +23,6 @@ app.use("/api", protect, router);
 app.post("/signup", createNewUser);
 app.post("/signin", loginUser);
 
-app.use((err: any, req: Request, res: Response, next: NextFunction) => {
-  console.log("Middleware Error Handling");
-  const errStatus = err.statusCode || 500;
-  const errMsg = err.message || "Something went wrong";
-  res.status(errStatus).json({
-    success: false,
-    status: errStatus,
-    message: errMsg,
-    stack: config.env === "development" ? err.stack : {},
-  });
-});
+app.use(ErrorHandler);
 
 export default app;
