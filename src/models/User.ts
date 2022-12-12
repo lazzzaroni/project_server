@@ -1,24 +1,10 @@
-import { Types, model, Schema } from "mongoose";
+import { model, Schema } from "mongoose";
+import { IUser, IImages } from "./interfaces";
 
-export interface IUser {
-  id: Types.ObjectId;
-  name: String;
-  email: IEmail;
-  password: String;
-  createdAt: Date;
-  updatedAt: Date;
-}
-
-interface IEmail {
-  type: String;
-  lowercase: boolean;
-  unique: boolean;
-  trim: boolean;
-  required: boolean;
-  validate: {
-    validator: Function;
-  };
-}
+const ImagesSchema = new Schema<IImages>({
+  name: String,
+  uploadedAt: { type: Date, default: () => Date.now() },
+});
 
 const UserSchema = new Schema<IUser>({
   name: String,
@@ -36,6 +22,8 @@ const UserSchema = new Schema<IUser>({
     },
   },
   password: { type: String, required: true, minlength: 8 },
+  birthdate: { type: Date },
+  images: [ImagesSchema],
   createdAt: { type: Date, immutable: true, default: () => Date.now() },
   updatedAt: { type: Date, default: () => Date.now() },
 });

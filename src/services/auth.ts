@@ -2,7 +2,7 @@ import bcrypt from "bcrypt";
 import { NextFunction, Request, Response } from "express";
 import jwt, { Secret } from "jsonwebtoken";
 import config from "../config";
-import { IUser } from "../models/User";
+import { IUser } from "../models/interfaces";
 
 const JWT_KEY: Secret = config.secrets.jwt;
 
