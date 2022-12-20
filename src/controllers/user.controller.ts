@@ -11,11 +11,11 @@ export async function getOneUser(
   res: Response,
   next: NextFunction
 ) {
-  const user = await User.findById(req.params.token);
+  const user = await User.findOne();
 
   try {
     if (!user) {
-      res.status(404).end();
+      throw new Error();
     }
     res.json(user);
   } catch (e) {
