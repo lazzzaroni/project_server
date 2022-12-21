@@ -7,6 +7,7 @@ export interface IUser {
   password: String;
   birthdate: Date;
   images: IImages;
+  isAdmin: Boolean;
   createdAt: Date;
   updatedAt: Date;
 }

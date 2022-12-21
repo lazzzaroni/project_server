@@ -1,5 +1,5 @@
 import { model, Schema } from "mongoose";
-import { IUser, IImages } from "./interfaces";
+import { IImages, IUser } from "./interfaces";
 
 const ImagesSchema = new Schema<IImages>({
   name: String,
@@ -24,6 +24,7 @@ const UserSchema = new Schema<IUser>({
   password: { type: String, required: true, minlength: 8 },
   birthdate: { type: Date },
   images: [ImagesSchema],
+  isAdmin: { type: Boolean, default: false },
   createdAt: { type: Date, immutable: true, default: () => Date.now() },
   updatedAt: { type: Date, default: () => Date.now() },
 });
