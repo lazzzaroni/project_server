@@ -11,8 +11,8 @@ export async function getOneUser(
   res: Response,
   next: NextFunction
 ) {
-  const user = await User.findOne();
-
+  const user = await User.findById(req.body._id);
+  console.log(user);
   try {
     if (!user) {
       throw new Error();
