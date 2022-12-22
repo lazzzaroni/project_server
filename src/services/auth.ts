@@ -15,7 +15,10 @@ export const hashPassword = (password: string) => {
 };
 
 export const createJWT = (user: IUser) => {
-  const token = jwt.sign({ id: user.id, email: user.email }, JWT_KEY);
+  const token = jwt.sign(
+    { id: user.id, name: user.name, email: user.email, isAdmin: user.isAdmin },
+    JWT_KEY
+  );
   return token;
 };
 
