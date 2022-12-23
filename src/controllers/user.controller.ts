@@ -21,3 +21,20 @@ export async function getOneUser(
     next(e);
   }
 }
+
+export async function updateUser(
+  req: Request,
+  res: Response,
+  next: NextFunction
+) {
+  try {
+    const updatedUser = new User({
+      _id: req.body.user.id,
+      name: req.body.name,
+    });
+    const update = await User.updateOne({ _id: req.body.user.id }, updatedUser);
+    res.json({ message: "User has been updated successfully!" });
+  } catch (e) {
+    next(e);
+  }
+}
