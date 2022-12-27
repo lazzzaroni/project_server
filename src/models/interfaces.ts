@@ -28,3 +28,11 @@ export interface IImages {
   name: String;
   uploadedAt: Date;
 }
+
+export interface IEvent {
+  name: String;
+  description: String;
+  startDate: Date;
+  isOnline: boolean;
+  address: String;
+}
